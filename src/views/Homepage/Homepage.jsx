@@ -134,6 +134,8 @@ export class Homepage extends Component {
             starArr.push(3);
           }
           break;
+        default:
+          return;
       }
     }
 
@@ -170,6 +172,8 @@ export class Homepage extends Component {
           case 3:
             starFinal = "three";
             break;
+          default:
+            return;
         }
         this.setState(
           {
@@ -215,6 +219,8 @@ export class Homepage extends Component {
           () => this.applyFilters()
         );
         break;
+      default:
+        return;
     }
   };
 
@@ -252,7 +258,6 @@ export class Homepage extends Component {
     // Apply facility filter
     if (facilityFilter.length) {
       updatedList = updatedList.filter((item) => {
-        let matchItem;
         let result = [];
         facilityFilter.forEach((facility) => {
           if (item.facility.includes(facility)) {

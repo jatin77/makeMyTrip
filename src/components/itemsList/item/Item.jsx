@@ -6,10 +6,11 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
-import Avatar from "@material-ui/core/Avatar";
 import Chip from "@material-ui/core/Chip";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
+import Badge from "@material-ui/core/Badge";
+import StarIcon from "@material-ui/icons/Star";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,27 +38,50 @@ const useStyles = makeStyles((theme) => ({
     margin: ".5rem .5rem",
     display: "inline-block",
   },
+  header: {
+    display: "flex",
+    alignItems: "center",
+    padding: ".5rem 0",
+  },
+  mZero: {
+    margin: 0,
+  },
 }));
 
 export default function Item({ item }) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <Card className={classes.root}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            {item.rating}
-          </Avatar>
-        }
-        title={item.name}
-        subheader={`$${item.price}/night`}
-      />
+      <div className={classes.header}>
+        <CardHeader
+          avatar={
+            <Badge badgeContent={item.rating} color="primary">
+              <StarIcon style={{ color: "#ffb400" }} />
+            </Badge>
+          }
+          // title={item.name}
+        ></CardHeader>
+        <div>
+          <Typography
+            variant="h6"
+            gutterBottom
+            style={{ lineHeight: "1.2" }}
+            className={classes.mZero}
+          >
+            {item.name}
+          </Typography>
+          <Typography
+            variant="body2"
+            display="block"
+            gutterBottom
+            className={classes.mZero}
+            color="textSecondary"
+          >
+            ${item.price}/night
+          </Typography>
+        </div>
+      </div>
 
       <CardMedia className={classes.media} image={item.img} title={item.name} />
       <CardContent>
@@ -68,9 +92,8 @@ export default function Item({ item }) {
             </span>
           ))}
         </div>
-        <Typography variant="subtitle1">
-          {item.property_type.toUpperCase()}
-        </Typography>
+
+        <Typography variant="subtitle2"></Typography>
         <Typography variant="body2" color="textSecondary" component="p">
           This impressive paella is a perfect party dish and a fun meal to cook
           together with your guests. Add 1 cup of frozen peas along with the
