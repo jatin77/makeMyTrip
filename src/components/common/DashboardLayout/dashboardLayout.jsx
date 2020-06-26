@@ -311,7 +311,7 @@ export default function Container(props) {
               <SearchIcon style={{ color: "#000" }} />
             </div>
             <InputBase
-              placeholder="Search…"
+              placeholder="Search Hotel Name…"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
